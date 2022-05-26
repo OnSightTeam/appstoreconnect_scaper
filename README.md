@@ -7,4 +7,4 @@
 *Content:*
 
 APPLE_ACCOUNT = ''email account''\
-APPLE_PWD = ''password''\
+APPLE_PWD = ''password''
