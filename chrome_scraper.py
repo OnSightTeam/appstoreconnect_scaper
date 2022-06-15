@@ -44,7 +44,6 @@ with webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=
         ## find email text form and fill with account
         account_field = wait.until(EC.element_to_be_clickable((By.ID, "account_name_text_field")))
         account_field.send_keys(os.getenv('APPLE_ACCOUNT'))
-        time.sleep(2)
         account_field.send_keys(Keys.ENTER)
 
         ## activate remind me checkbox to avoid next enter login process
@@ -79,17 +78,16 @@ with webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=
     driver.get('https://appstoreconnect.apple.com/apps/1572271000/appstore/activity/ios/ratingsResponses?m=')
 
     ##TODO: -Need to fix this code first-
-    # reviews_wait = WebDriverWait(driver, 20)
 
-    # reviews_container = reviews_wait.until(EC.visibility_of_element_located((By.ID, 'reviews-container')))
-    # if reviews_container:
-    #     print(driver.page_source)
-    # else:
-    #     print('Page content is:')
-    #     print(driver.page_source)
+    try:
+        reviews_container = wait.until(EC.visibility_of_element_located((By.ID, 'reviews-container')))
+        print(driver.page_source)
+    except:
+        print('Page content is:')
+        print(driver.page_source)
 
     ## timeout just to make sure page loads correct and browser didn't closed at the end of the method immediately
-    time.sleep(15)
+    time.sleep(25)
 
     ## close driver - memory management
     driver.quit()
